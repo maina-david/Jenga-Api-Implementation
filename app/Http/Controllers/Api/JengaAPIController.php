@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\JengaAccount;
 use Illuminate\Http\Request;
-use App\Jobs\GenerateJengaToken;
 
 class JengaAPIController extends Controller
 {
@@ -16,9 +15,7 @@ class JengaAPIController extends Controller
      */
     public function index()
     {
-        dispatch(new GenerateJengaToken);
-
-        return response()->json(['message' => 'Token generated successfully']);
+        //
     }
 
     /**
