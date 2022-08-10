@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class JengaAPIController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Check Account Balance.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function accountBalance()
     {
         //
     }
