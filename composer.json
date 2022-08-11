@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -25,7 +28,16 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Http/JengaHelpers/accountservices.php",
+            "app/Http/JengaHelpers/airtime.php",
+            "app/Http/JengaHelpers/credit.php",
+            "app/Http/JengaHelpers/debit.php",
+            "app/Http/JengaHelpers/forexrates.php",
+            "app/Http/JengaHelpers/kyc.php",
+            "app/Http/JengaHelpers/loans.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

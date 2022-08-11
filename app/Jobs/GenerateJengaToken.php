@@ -30,7 +30,7 @@ class GenerateJengaToken implements ShouldQueue
     {
         $this->jengaAccount = JengaAccount::where('active', 1)->first();
         $this->jengaToken = JengaToken::orderBy('id', 'desc')->first();
-        $this->url = config('jenga.url') . '/authenticate/merchant';
+        $this->url = config('jenga.auth_url') . '/authenticate/merchant';
         $this->headers = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
