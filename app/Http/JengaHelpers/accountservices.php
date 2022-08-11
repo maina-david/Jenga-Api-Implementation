@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\JengaToken;
-use App\Jobs\GenerateJengaToken;
+use App\Jobs\JengaTokenJob;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -13,7 +13,7 @@ function jengaToken()
 {
     $token = JengaToken::first();
     if (!$token) {
-        dispatch(new GenerateJengaToken);
+        dispatch(new JengaTokenJob);
 
         $token = JengaToken::first();
         if ($token) {
@@ -24,7 +24,7 @@ function jengaToken()
     }
     //Check if the token exixts and has expired. If it has, refresh the token.
     if ($token && time() > $token->expires_in) {
-        dispatch(new GenerateJengaToken);
+        dispatch(new JengaTokenJob);
 
         $token = JengaToken::first();
         if ($token) {
