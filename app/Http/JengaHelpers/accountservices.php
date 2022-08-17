@@ -55,12 +55,16 @@ function accountBalance($countryCode, $accountId)
         'Authorization' => 'Bearer ' . $token,
         'signature' => generateSignature($countryCode . $accountId),
     ];
+
     $response = Http::withHeaders($headers)->get($url);
-    if ($response->successful()) {
-        $response = json_decode($response->getBody()->getContents());
-        return $response->balance;
+
+    $response = json_decode($response->getBody()->getContents());
+
+    if ($response->code == 0 && $response->status == true) {
+        return $response->data;
     }
-    return json_decode($response->getBody()->getContents());
+
+    return response()->json(['status' => 'error', 'message' => 'Unable to fetch account balance']);
 }
 
 /**
