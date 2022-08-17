@@ -64,7 +64,7 @@ function accountBalance($countryCode, $accountId)
         return $response->data;
     }
 
-    return response()->json(['status' => 'error', 'message' => 'Unable to fetch account balance']);
+    return $response;
 }
 
 /**
