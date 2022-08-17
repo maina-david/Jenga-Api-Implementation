@@ -4,16 +4,51 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\JengaAccount;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class JengaAPIController extends Controller
 {
+
+    public function index()
+    {
+        return accountBalance('KE', '123456789');
+    }
+    /**
+     * Get Bearer Token.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getBearerToken()
+    {
+        $jengaAccount = JengaAccount::first();
+        $url = config('jenga.auth_url') . '/authenticate/merchant';
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Api-Key' => $jengaAccount->api_key,
+        ];
+        $body = [
+            'merchantCode' => $jengaAccount->merchant_code,
+            'consumerSecret' => $jengaAccount->consumer_secret,
+        ];
+        $response = Http::withHeaders($headers)->post($url, $body);
+
+        if ($response->successful()) {
+            $response = json_decode($response->getBody()->getContents());
+            return $response->accessToken;
+        }
+
+        return response()->json(['error' => 'true', 'message' => json_decode($response->getBody()->getContents())]);
+    }
+
     /**
      * Check Account Balance.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function payloads()
     {
         $dataBank = [
             "source" =>

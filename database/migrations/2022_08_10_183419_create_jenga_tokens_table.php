@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('merchant_code');
             $table->longText('access_token');
             $table->longText('refresh_token');
-            $table->dateTime('expires_in');
-            $table->dateTime('issued_at');
+            $table->string('expires_in');
+            $table->string('issued_at');
             $table->string('token_type');
             $table->timestamps();
         });

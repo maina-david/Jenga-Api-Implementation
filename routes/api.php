@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/jenga/token', [JengaAPIController::class, 'index']);
+Route::get('/index', [JengaAPIController::class, 'index']);
